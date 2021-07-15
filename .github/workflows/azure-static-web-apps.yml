@@ -20,6 +20,6 @@ jobs:
           action: 'upload'
           ###### Repository/Build Configurations
           app_location: '/'
-          output_location: 'dist'
+          output_location: 'dist/angular-goodreads-dashboard'
           ###### End of Repository/Build Configurations ######
 
