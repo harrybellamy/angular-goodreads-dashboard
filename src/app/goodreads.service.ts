@@ -2,36 +2,40 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Channel, Book } from './goodreads-models';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Parser } from 'xml2js'; 
+import { AppSettingsService } from './appsettings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoodreadsService {
 
-  private goodreadsUrl = '/data';
-  private currentlyReadingUrl = '/currently-reading-data'
-
   httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'text'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private appSettings: AppSettingsService) { }
 
   getData(): Observable<Channel> {
-    return this.getDataFromUrl(this.goodreadsUrl);
+    return this.appSettings.getSettings()
+      .pipe(
+        mergeMap(settings => this.getDataFromUrl(settings.mostRecentUrl))
+    );
   }
 
   getCurrentlyReadingData(): Observable<Channel> {
-    return this.getDataFromUrl(this.currentlyReadingUrl);
+    return this.appSettings.getSettings()
+      .pipe(
+        mergeMap(settings => this.getDataFromUrl(settings.currentlyReadingUrl))
+    );
   }
 
   private getDataFromUrl(url: string): Observable<Channel> {
     return this.http.get(url, { responseType: 'text' })
       .pipe(
-        map(data => this.parseXml(data as string))
+        map(data => this.parseXml(data))
     );
   }
 
