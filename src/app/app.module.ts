@@ -11,6 +11,7 @@ import { CurrentlyReadingComponent } from './currently-reading/currently-reading
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SignalrComponent } from './signalr/signalr-component';
+import { GuitarsComponent } from './guitars/guitars.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SignalrComponent } from './signalr/signalr-component';
     MostRecentComponent,
     BookDetailsComponent,
     CurrentlyReadingComponent,
-    SignalrComponent
+    SignalrComponent,
+    GuitarsComponent
   ],
   imports: [
     BrowserModule,

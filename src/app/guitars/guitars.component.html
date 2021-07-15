@@ -1,0 +1,14 @@
+<ul class="guitars" *ngIf="guitars !== undefined">
+    <li class="card" *ngFor="let item of guitars">
+      <div class="guitar-details">
+        <div>
+          {{item.make}}
+        </div>
+        <div>
+          {{item.model}}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="guitars === undefined" class="loader">    
+  </div>
