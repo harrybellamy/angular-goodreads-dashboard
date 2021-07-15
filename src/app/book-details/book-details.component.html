@@ -1,0 +1,18 @@
+<div *ngIf="book !== undefined">
+    <div class="book-details">
+        <div class="cover-image">
+            <img src="{{book?.largeImageUrl}}" alt="{{book?.title}}">
+        </div>
+        <div>
+            <h1 class="book-title">{{book?.title}}</h1>
+            <h2 class="book-author">by {{book?.author}}</h2>
+            <div class="average-rating">
+                Average Rating: {{book?.averageRating}}
+            </div>
+        </div>
+    </div>
+    <button (click)="goBack()">Go Back</button>
+</div>
+<div *ngIf="book === undefined" class="loader">    
+</div>
+

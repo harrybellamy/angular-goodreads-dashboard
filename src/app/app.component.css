@@ -1,0 +1,68 @@
+/* Simple dashboard grid CSS */
+
+/* Assign grid instructions to our parent grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+      "sidenav header"
+      "sidenav main"
+      "sidenav footer";
+    height: 100vh;
+  }
+  
+  /* Give every child element its grid name */
+  .header {
+    grid-area: header;
+    background-color: var(--hoki);
+  }
+  
+  .sidenav {
+    grid-area: sidenav;
+    border-radius: 29px;
+    background: #a6c9dd;
+    box-shadow: inset 26px 26px 51px #8dabbc,
+            inset -26px -26px 51px #bfe7fe;
+    margin: 10px;
+  }
+  
+  .main {
+    grid-area: main;
+  }
+  
+  .footer {
+    grid-area: footer;
+    background-color: var(--hoki);
+  }
+
+  .sidenav {
+    display: flex; /* Will be hidden on mobile */
+    flex-direction: column;
+    grid-area: sidenav;
+    border-radius: 29px;
+    background: var(--aqua-island);
+    box-shadow: inset 26px 26px 51px var(--nepal),
+            inset -26px -26px 51px var(--french-pass);
+    margin: 10px;
+  }
+
+  .sidenav__list {
+    padding: 0;
+    margin-top: 85px;
+    list-style-type: none;
+  }
+
+  .sidenav__list-item {
+    padding: 20px 20px 20px 40px;
+    color: var(--alto);
+  }
+
+  a {
+    color: var(--alto);
+  }
+
+  .sidenav__list-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+  }

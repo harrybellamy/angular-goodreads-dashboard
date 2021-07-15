@@ -1,0 +1,29 @@
+
+  <div cdkDropList class="most-recent" *ngIf="channel?.items !== undefined" (cdkDropListDropped)="drop($event)">
+    <div class="card" *ngFor="let item of channel?.items?.slice(0, 5)" cdkDrag>
+      <div class="cover-image">
+        <a routerLink="/book/{{item.id}}">
+          <img src="{{item.imageUrl}}" alt="{{item.title}}">
+        </a> 
+      </div>
+      <div class="book-details">
+        <div>
+          {{item.title}}
+        </div>
+        <div>
+          by {{item.author}}
+        </div>
+      </div>
+      <div class="user-rating">
+        <ul *ngIf="item.userRating !== 0">
+          <li class="rating-star" *ngFor="let number of [].constructor(item.userRating)">
+            ★
+          </li>
+        </ul>
+        <div *ngIf="item.userRating === 0">
+          No user rating
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="channel === undefined" class="loader"></div>

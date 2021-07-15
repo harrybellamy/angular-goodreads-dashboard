@@ -1,0 +1,20 @@
+
+  <ul class="currently-reading" *ngIf="channel?.items !== undefined">
+    <li class="card" *ngFor="let item of channel?.items">
+      <div class="cover-image">
+        <a routerLink="/book/{{item.id}}">
+          <img src="{{item.imageUrl}}" alt="{{item.title}}">
+        </a> 
+      </div>
+      <div class="book-details">
+        <div>
+          {{item.title}}
+        </div>
+        <div>
+          by {{item.author}}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="channel === undefined" class="loader">    
+  </div>
