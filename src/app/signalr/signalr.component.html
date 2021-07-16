@@ -1,1 +1,4 @@
-<h1>{{price}}</h1>
+<div *ngFor="let item of prices | keyvalue">
+    <h1>{{item.key}}: {{item.value}}</h1>
+</div>
+

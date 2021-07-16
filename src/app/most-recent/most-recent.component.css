@@ -20,23 +20,6 @@
     margin: 10px
   }
 
-  .card {
-    padding: 20px 10px;
-    border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px;
-    /*justify-content: space-between;
-    box-sizing: border-box;*/
-    cursor: move;
-    font-size: 14px;
-    border-radius: 25px;
-    box-shadow: inset 40px 40px 80px var(--nepal),
-            inset -40px -40px 80px var(--french-pass);
-  }
-
   .rating-star {
       display:inline;
   }

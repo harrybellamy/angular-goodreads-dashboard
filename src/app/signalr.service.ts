@@ -1,26 +1,31 @@
 import { EventEmitter, Injectable } from '@angular/core'  
 import { HubConnection,HubConnectionBuilder } from '@aspnet/signalr'  
+import { AppSettingsService } from './appsettings.service';
   
 @Injectable({
     providedIn: 'root'
   })
 export class signalRService {  
   
-  hubConnection: HubConnection;  
+  hubConnection: HubConnection | undefined;  
   onMessageReceived= new EventEmitter<any>();  
-  
-  SignalrUrl:string = "/signalr-server";
 
-  constructor() {  
+  constructor(private appSettingsService: AppSettingsService) { 
+    appSettingsService
+        .getSettings()
+      .subscribe(s => this.init(s.signalrNegotiateUrl));  
+  }  
+
+  private init(signalrUrl: string) {
     this.hubConnection =  new HubConnectionBuilder()  
-                              .withUrl(this.SignalrUrl)  
-                              .build();   
+        .withUrl(signalrUrl) 
+        .build();
     this.startConnection(); 
     this.registerEvents();   
-  }  
+  }
   
   private startConnection() {  
-    this.hubConnection.start().then( () => {  
+    this.hubConnection?.start().then(() => {  
       console.log('Connection started');  
     }).catch(err => {  
       console.error(err);  
@@ -29,7 +34,7 @@ export class signalRService {
   }  
   
   private registerEvents() {  
-    this.hubConnection.on('priceUpdate', (message: any) => {  
+    this.hubConnection?.on('priceUpdate', (message: any) => {  
       console.log('message received:' + message);  
       this.onMessageReceived.emit(message);  
     })   

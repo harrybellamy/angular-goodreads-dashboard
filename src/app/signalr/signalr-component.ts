@@ -7,13 +7,14 @@ import { signalRService } from '../signalr.service';
   templateUrl: './signalr.component.html',  
 })  
 export class SignalrComponent implements OnInit {  
-  price: any; 
+  prices: Map<string, number> = new Map<string, number>(); 
   constructor(private chatService: signalRService) {      
   }  
   
   ngOnInit() {  
     this.chatService.onMessageReceived.subscribe((message) => {  
-      this.price = message.price;
+      console.log(message);
+      this.prices.set(message.CommodityName, message.Price);
     });  
   }   
 }  
